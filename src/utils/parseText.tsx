@@ -2,20 +2,6 @@ import { addressMapping, translationMapping, imgSourceObject } from '../utils/va
 
 // all progress logs
 
-function getValueMap(text: string) {
-  const lines = text.split('\n');
-
-  const valueMap: { [key: string]: string } = {};
-
-  lines.forEach(line => {
-    const [key, value] = line.split('=');
-    if (key && value !== undefined) {
-      valueMap[key.trim()] = value.trim();
-    }
-  });
-
-  return valueMap;
-}
 
 // TODO: optimize
 function populateInitItemStatus(
@@ -46,11 +32,9 @@ function populateInitItemStatus(
   }
 }
 
-export function getNewItemStatus(initItemStatus: any, text: string) {
+export function getNewItemStatus(initItemStatus: any, progress: RMRPTJS.Progress) {
   const itemStatus = initItemStatus
-  const valueMap = getValueMap(text)
-
-  populateInitItemStatus(valueMap, addressMapping, itemStatus)
+  populateInitItemStatus(progress, addressMapping, itemStatus)
 
   return itemStatus
 }
@@ -179,7 +163,7 @@ function buildImageMap(addressMapping: { [key: string]: any }, imgSourceObject: 
   return flatMap;
 }
 
-export function getNewItemLogs(text: string) {
+export function getNewItemLogs(newItems: RMRPTJS.AcquiredItems) {
   // console.log(text)
   // const lines = text.split('\n')
   //   .filter(line => line)
@@ -191,13 +175,13 @@ export function getNewItemLogs(text: string) {
   // console.log(result)
   // const result: string[] = []
 
-  const keyLines = text.trim().split(/\s+/);
+  // const keyLines = text.trim().split(/\s+/);
   const flatMap = buildTranslationMap(addressMapping, translationMapping);
 
   const imgMap = buildImageMap(addressMapping, imgSourceObject)
   // console.log(imgMap)
 
-  return keyLines.map((key) => {
+  return newItems.map((key) => {
     return flatMap.get(key) ? [imgMap.get(key), flatMap.get(key)] : ['', '']
     // return flatMap.get(key) ? flatMap.get(key) ?? `[未翻譯] ${key}` : ''
   });

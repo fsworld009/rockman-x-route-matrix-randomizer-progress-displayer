@@ -1,6 +1,4 @@
 export const imgBasePath = './progress_tracker_assets/'
-export const progressFilePath = './progress_report.txt'
-export const itemLogFilePath = './item_id_log.txt'
 
 const bImgObject = ['b.png', 'ba.png', 'br.png', 'bd.png', 'bc.png']
 export const imgSourceObject = {

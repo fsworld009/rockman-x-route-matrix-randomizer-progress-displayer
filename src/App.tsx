@@ -1,8 +1,7 @@
 import { createSignal, Show, onMount } from 'solid-js'
 import { Motion, Presence } from "solid-motionone"
-import { crc32 } from 'js-crc'
 
-import { progressFilePath, itemLogFilePath, initItemStatus } from './utils/variable'
+import { initItemStatus } from './utils/variable'
 import { getNewItemStatus, getNewItemLogs } from './utils/parseText'
 
 import X1 from "./component/X1"
@@ -16,37 +15,27 @@ function App() {
   const [itemStatus, setItemStatus] = createSignal(initItemStatus)
   const [itemLogs, setItemLogs] = createSignal<string[][]>([])
   const [displayMode, setDisplayMode] = createSignal(0)
-  const [fileCRC, setFileCRC] = createSignal(['', ''])
 
-  async function fetchFile() {
+  async function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
     if (displayMode() == 0 || displayMode() == 1) {
-      const newItemStatusLines = await fetch(progressFilePath).then(r => r.text())
 
-      const newCRC = crc32(newItemStatusLines)
-      if (fileCRC()[0] != newCRC) {
-        setFileCRC([newCRC, fileCRC()[1]])
         // setItemStatus(() => parseText(initItemStatus, text))
-        setItemStatus({ ...getNewItemStatus(initItemStatus, newItemStatusLines) })
-      }
+      setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
+
       // console.log(fileCRC(), newCRC)
     }
     if (displayMode() == 2) {
-      const newItemLogsLines = await fetch(itemLogFilePath).then(r => r.text())
-
-      const newCRC = crc32(newItemLogsLines)
-      if (fileCRC()[1] != newCRC) {
-        setFileCRC([fileCRC()[0], newCRC])
-        setItemLogs([...getNewItemLogs(newItemLogsLines)])
-      }
-      // console.log(fileCRC(), newCRC)
+        setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
     }
     return;
   }
-
   onMount(() => {
-    setInterval(() => {
-      fetchFile()
-    }, 1000)
+    console.log(import.meta.env.VITE_RMRPTJS_BASE_URL)
+    window.RMRPTJS.configure({
+      baseUrl: import.meta.env.VITE_RMRPTJS_BASE_URL,
+      callbacks: [onProgressUpdate]
+    });
+    window.RMRPTJS.start();
   })
 
   return (
@@ -55,7 +44,7 @@ function App() {
         {itemStatus().x1.e[0]}
         </div> */}
       <div
-        onClick={() => setDisplayMode((displayMode() + 1) % 3)}
+        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 3)}
       >
         <Presence exitBeforeEnter>
           {/* show all games and last 5 got items */}
