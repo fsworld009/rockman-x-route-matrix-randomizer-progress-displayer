@@ -35,6 +35,7 @@ export const imgSourceObject = {
     'wp': 'energy.png',
     'e': 'etank.png',
     'b': bImgObject,
+    'sigmaBosses': 'x1_sigma_boss.gif'
   },
   'x2': {
     'bosses': [
@@ -73,7 +74,8 @@ export const imgSourceObject = {
       'x2_zero_head.ico',
       'x2_zero_body.ico',
       'x2_zero_foot.ico',
-    ]
+    ],
+    'sigmaBosses': 'x2_sigma_boss.gif'
   },
   'x3': {
     'bosses': [
@@ -119,6 +121,7 @@ export const imgSourceObject = {
       'x3_ridearmor_k.png',
       'x3_ridearmor_n.png'
     ],
+    'sigmaBosses': 'x3_sigma_boss.gif'
   },
   'miscellaneous': {
     'sigma': 'sigma.png',
@@ -144,6 +147,7 @@ export const initItemStatus = {
     wp: Array(1).fill(0),
     e: Array(1).fill(0),
     b: Array(5).fill(0),
+    sigmaBosses: Array(5).fill(0),
   },
   'x2': {
     bosses: Array(8).fill(0),
@@ -154,7 +158,8 @@ export const initItemStatus = {
     wp: Array(1).fill(0),
     e: Array(1).fill(0),
     b: Array(5).fill(0),
-    zero: Array(3).fill(0)
+    zero: Array(3).fill(0),
+    sigmaBosses: Array(6).fill(0),
   },
   'x3': {
     bosses: Array(8).fill(0),
@@ -166,7 +171,8 @@ export const initItemStatus = {
     e: Array(1).fill(0),
     b: Array(5).fill(0),
     subbosses: Array(3).fill(0),
-    ridearmor: Array(4).fill(0)
+    ridearmor: Array(4).fill(0),
+    sigmaBosses: Array(7).fill(0),
   },
   'miscellaneous': {
     sigma: Array(1).fill(0),
@@ -254,6 +260,11 @@ export const addressMapping = {
       [['1ItBusterDashShot1', '1ItBusterDashShotUnlimited',]],
       [['1ItCharge75', '1ItCharge100', '1ItCharge125', '1ItCharge150',]],
     ],
+    'sigmaBosses': [
+      [[
+        '1ChOPClear', '1ChS1Clear', '1ChS2Clear', '1ChS3Clear', '1AllClear'
+      ]]
+    ]
   },
   'x2': {
     'bosses': [
@@ -337,6 +348,11 @@ export const addressMapping = {
       ['2ItZeroBody'],
       // foot ['0x138']
       ['2ItZeroFoot'],
+    ],
+    'sigmaBosses': [
+      [[
+        '2ChOPClear', '2ChS1Clear', '2ChS2Clear', '2ChS3Clear', '2ChS4Clear', '2AllClear'
+      ]]
     ]
   },
   'x3': {
@@ -432,6 +448,11 @@ export const addressMapping = {
       // n ['0x254']
       ['3ItRideArmorN'],
     ],
+    'sigmaBosses': [
+      [[
+        '3ChOPClear', '3ChS1Clear1', '3ChS1Clear2', '3ChS2Clear1', '3ChS2Clear2', '3ChS3Clear', '3AllClear'
+      ]]
+    ]
   },
   'miscellaneous': {
     'sigma': [
@@ -772,6 +793,7 @@ export interface X1ImgSource {
   bosses: string[]
   weapon: string[]
   armor: string[]
+  sigmaBosses: string
 }
 export interface X1ItemStatus {
   bosses: boolean[]
@@ -779,6 +801,7 @@ export interface X1ItemStatus {
   armor: boolean[]
   e: number[]
   b: number[]
+  sigmaBosses: number[]
 }
 
 export interface X2ImgSource {
@@ -786,6 +809,7 @@ export interface X2ImgSource {
   weapon: string[]
   armor: string[]
   zero: string[]
+  sigmaBosses: string
 }
 export interface X2ItemStatus {
   bosses: boolean[]
@@ -794,6 +818,7 @@ export interface X2ItemStatus {
   e: number[]
   b: number[]
   zero: boolean[]
+  sigmaBosses: number[]
 }
 
 export interface X3ImgSource {
@@ -802,6 +827,7 @@ export interface X3ImgSource {
   armor: string[]
   subbosses: string[]
   ridearmor: string[]
+  sigmaBosses: string
 }
 export interface X3ItemStatus {
   bosses: boolean[]
@@ -811,6 +837,7 @@ export interface X3ItemStatus {
   b: number[]
   subbosses: boolean[]
   ridearmor: boolean[]
+  sigmaBosses: number[]
 }
 
 export interface MiscellaneousImgSource {

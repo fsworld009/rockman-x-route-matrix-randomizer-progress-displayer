@@ -149,6 +149,13 @@ function Common(props: {
       </GridContainer>
 
       <GridContainer cols={9}>
+        {/* Sigma Boss */}
+        <div class="relative">
+          <ItemImage source={`${imgBasePath}${imgSource['sigmaBosses']}`} />
+          <div class="absolute size-[100%] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center">
+            <TextAnimated text={itemStatus().sigmaBosses[0]} />
+          </div>
+        </div>
         {/* Special Armor */}
         <ItemImage
           source={`${imgBasePath}${imgSource.armor[4]}`}

@@ -30,7 +30,6 @@ function App() {
     return;
   }
   onMount(() => {
-    console.log(import.meta.env.VITE_RMRPTJS_BASE_URL)
     window.RMRPTJS.configure({
       baseUrl: import.meta.env.VITE_RMRPTJS_BASE_URL,
       callbacks: [onProgressUpdate]
