@@ -2,41 +2,41 @@
 
 ![screenshot](/screenshot.jpg)
 
-用於圖像化[Route MatriX Randomizer progress tracker](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker/)輸出的進度表網頁
+用於圖像化[Route MatriX Randomizer progress tracker JS](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker_js/)輸出的進度表網頁
 
 ## 事前準備/prerequisites
 
-- [Route MatriX Randomizer progress tracker](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker/)
-  - `progress_tracker/`
-  - `patched_boot.lua`
+- [Route MatriX Randomizer progress tracker JS](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker_js/)
+  - `progress_tracker_js/`
 
 ## 安裝方式/how to install
 
 1. 從Releases下載`RouteMatriXRandomizer_progress_displayer.zip`
-2. 解壓縮到`boot.lua`所在的位置
+2. 解壓縮到任意位置
+3. 下載Route_MatriX_Randomizer_progress_tracker_js
+4. 解壓縮`progress_tracker_js`至步驟2指定的資料夾
 
 解壓縮後的目錄結構應如下：
 
 ```plain
-RouteMatriXRandomizer
-├── bin/
-├── lua/
-├── boot.lua
-├── boot.smc
-├── spoiler.txt
-├── progress_tracker/ (從「事前準備」的repo中新增)
-├── patched_boot.lua (從「事前準備」的repo中新增)
+RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
+├── progress_tracker_js/ (下載 「Route_MatriX_Randomizer_progress_tracker_js」解壓縮)
+    ├── RMR_progress_tracker.lua
+    ├── RMR_progress_tracker.js
+    ├── RMR_progress_tracker_id_maps.js
 ├── progress_tracker_assets/ (從「Release」解壓縮)
 └── index.html (從「Release」解壓縮)
 ```
 
-若有其他想並用的記錄顯示網頁，只需將`index.html`更名為其他任意名稱（例如：`RouteMatriXRandomizer_progress_displayer.html`），即可避免衝突
+5. 載入boot.lua後載入RouteMatriXRandomizer_progress_displayer/progress_tracker_js/RMR_progress_tracker.lua
 
 ## 使用方式/how to use
 
 1. 在OBS的瀏覽器來源中勾選「本機檔案」，選擇`index.html`
 2. 尺寸（瀏覽器來源屬性內的寬度和高度）可依需求自行設定，圖示和文字大小會隨尺寸響應變化
 3. 如果有出現下方被截斷的情況，請依使用的版位增加高度或縮減寬度
+
+如沒有實況錄影需求, 可直接開啟網頁
 
 ## 選項/options
 
