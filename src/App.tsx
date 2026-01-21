@@ -2,6 +2,7 @@ import { createSignal, Show, onMount } from 'solid-js'
 import { Motion, Presence } from "solid-motionone"
 
 import { initItemStatus } from './utils/variable'
+import { defaultDisplayMode } from './utils/parseQueryParams';
 import { getNewItemStatus, getNewItemLogs } from './utils/parseText'
 
 import X1 from "./component/X1"
@@ -14,17 +15,17 @@ import ItemIconTextLine from './component/ItemIconTextLine'
 function App() {
   const [itemStatus, setItemStatus] = createSignal(initItemStatus)
   const [itemLogs, setItemLogs] = createSignal<string[][]>([])
-  const [displayMode, setDisplayMode] = createSignal(0)
+  const [displayMode, setDisplayMode] = createSignal(defaultDisplayMode)
 
   async function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
-    if (displayMode() == 0 || displayMode() == 1 || displayMode() == 3) {
+    if (displayMode() != 2) {
 
         // setItemStatus(() => parseText(initItemStatus, text))
       setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
 
       // console.log(fileCRC(), newCRC)
     }
-    if (displayMode() == 2|| displayMode() == 1 || displayMode() == 3) {
+    if (displayMode() != 0 || displayMode() != 1) {
         setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
     }
     return;
@@ -43,11 +44,11 @@ function App() {
         {itemStatus().x1.e[0]}
         </div> */}
       <div
-        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 4)}
+        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 5)}
       >
         <Presence exitBeforeEnter>
           {/* show all games and last 5 got items */}
-          <Show when={displayMode() == 0}>
+          <Show when={displayMode() == 0 || displayMode() == 3}>
             <Motion.div
               initial={{ x: '100%' }}
               animate={{ x: '0%' }}
@@ -59,11 +60,12 @@ function App() {
               <X2 itemStatus={itemStatus().x2} />
               <X3 itemStatus={itemStatus().x3} />
               <Miscellaneous itemStatus={itemStatus().miscellaneous} />
+              <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
             </Motion.div>
           </Show>
 
           {/* show by current game */}
-          <Show when={displayMode() == 1 || displayMode() == 3}>
+          <Show when={displayMode() == 1 || displayMode() == 4}>
             <Show when={itemStatus().miscellaneous.title[0] == 1}>
               <Motion.div
                 initial={{ x: '100%' }}
@@ -74,7 +76,7 @@ function App() {
               >
                 <X1 itemStatus={itemStatus().x1} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
+                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
             <Show when={itemStatus().miscellaneous.title[0] == 2}>
@@ -87,7 +89,7 @@ function App() {
               >
                 <X2 itemStatus={itemStatus().x2} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
+                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
             <Show when={itemStatus().miscellaneous.title[0] == 3}>
@@ -100,7 +102,7 @@ function App() {
               >
                 <X3 itemStatus={itemStatus().x3} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
+                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
           </Show>
