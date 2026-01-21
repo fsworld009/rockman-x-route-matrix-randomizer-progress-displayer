@@ -17,14 +17,14 @@ function App() {
   const [displayMode, setDisplayMode] = createSignal(0)
 
   async function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
-    if (displayMode() == 0 || displayMode() == 1) {
+    if (displayMode() == 0 || displayMode() == 1 || displayMode() == 3) {
 
         // setItemStatus(() => parseText(initItemStatus, text))
       setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
 
       // console.log(fileCRC(), newCRC)
     }
-    if (displayMode() == 2) {
+    if (displayMode() == 2|| displayMode() == 1 || displayMode() == 3) {
         setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
     }
     return;
@@ -44,7 +44,7 @@ function App() {
         {itemStatus().x1.e[0]}
         </div> */}
       <div
-        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 3)}
+        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 4)}
       >
         <Presence exitBeforeEnter>
           {/* show all games and last 5 got items */}
@@ -64,7 +64,7 @@ function App() {
           </Show>
 
           {/* show by current game */}
-          <Show when={displayMode() == 1}>
+          <Show when={displayMode() == 1 || displayMode() == 3}>
             <Show when={itemStatus().miscellaneous.title[0] == 1}>
               <Motion.div
                 initial={{ x: '100%' }}
@@ -75,6 +75,7 @@ function App() {
               >
                 <X1 itemStatus={itemStatus().x1} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
+                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
             <Show when={itemStatus().miscellaneous.title[0] == 2}>
@@ -87,6 +88,7 @@ function App() {
               >
                 <X2 itemStatus={itemStatus().x2} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
+                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
             <Show when={itemStatus().miscellaneous.title[0] == 3}>
@@ -99,6 +101,7 @@ function App() {
               >
                 <X3 itemStatus={itemStatus().x3} />
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
+                <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
               </Motion.div>
             </Show>
           </Show>
