@@ -498,7 +498,7 @@ export const addressMapping = {
         "MItEnergyUp29", "MItEnergyUp30", "MItEnergyUp31", "MItEnergyUp32", "MItEnergyUp33", "MItEnergyUp34", "MItEnergyUp35", "MItEnergyUp36", "MItEnergyUp37", "MItEnergyUp38", "MItEnergyUp39", "MItEnergyUp40", "MItEnergyUp41", "MItEnergyUp42"
       ]]
     ],
-    'd': [],
+    'd': [['SDeathCount']],
     'igf': [['SIfg']],
     'title': [['SCurrentGame']],
   },
