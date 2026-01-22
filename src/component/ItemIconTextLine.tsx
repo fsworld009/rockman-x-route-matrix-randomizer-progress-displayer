@@ -2,11 +2,12 @@ import { createSignal, For, createEffect, Show } from 'solid-js';
 // import { Motion } from "solid-motionone";
 import { TransitionGroup } from "solid-transition-group"
 
+import { item_log_rows } from '../utils/parseQueryParams';
 import { imgBasePath } from '../utils/variable'
 import Choootype from './Choootype';
 
 function ItemIconTextLine(props: { lines: any[] }) {
-  const linesToDisplay = 5
+  const linesToDisplay = item_log_rows
   const [items, setItems] = createSignal<any[]>([])
   const [displayLines, setDisplayLines] = createSignal<any[]>([])
 

@@ -2,7 +2,7 @@ import { createSignal, Show, onMount } from 'solid-js'
 import { Motion, Presence } from "solid-motionone"
 
 import { initItemStatus } from './utils/variable'
-import { defaultDisplayMode } from './utils/parseQueryParams';
+import { progressMode, showAllStats, showItemLog } from './utils/parseQueryParams';
 import { getNewItemStatus, getNewItemLogs } from './utils/parseText'
 
 import X1 from "./component/X1"
@@ -14,20 +14,11 @@ import ItemIconTextLine from './component/ItemIconTextLine'
 
 function App() {
   const [itemStatus, setItemStatus] = createSignal(initItemStatus)
-  const [itemLogs, setItemLogs] = createSignal<string[][]>([])
-  const [displayMode, setDisplayMode] = createSignal(defaultDisplayMode)
+  const [item_logs, setItemLogs] = createSignal<string[][]>([])
 
   async function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
-    if (displayMode() != 2) {
-
-        // setItemStatus(() => parseText(initItemStatus, text))
-      setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
-
-      // console.log(fileCRC(), newCRC)
-    }
-    if (displayMode() != 0 || displayMode() != 1) {
-        setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
-    }
+    setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
+    setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
     return;
   }
   onMount(() => {
@@ -43,11 +34,8 @@ function App() {
       {/* <div class="grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-[repeat(9,min(10vw,8vh))] tracking-wider">
         {itemStatus().x1.e[0]}
         </div> */}
-      <div onClick={() => setDisplayMode((displayMode() + 1) % 5)}
-      >
+      <div>
         <Presence exitBeforeEnter>
-          {/* show all games and last 5 got items */}
-          <Show when={displayMode() == 0 || displayMode() == 3}>
             <Motion.div
               initial={{ x: '100%' }}
               animate={{ x: '0%' }}
@@ -55,71 +43,22 @@ function App() {
               transition={{ duration: 0.3, easing: "ease" }}
               class="✏️MuzaiPixel"
             >
-              <X1 itemStatus={itemStatus().x1} />
-              <X2 itemStatus={itemStatus().x2} />
-              <X3 itemStatus={itemStatus().x3} />
-              <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-              <Show when={displayMode() == 3}><ItemIconTextLine lines={itemLogs()} /></Show>
-            </Motion.div>
-          </Show>
-
-          {/* show by current game */}
-          <Show when={displayMode() == 1 || displayMode() == 4}>
-            <Show when={itemStatus().miscellaneous.title[0] == 1}>
-              <Motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: '0%' }}
-                exit={{ x: '100%' }}
-                transition={{ duration: 0.3, easing: "ease" }}
-                class="✏️MuzaiPixel"
-              >
+              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 1)}>
                 <X1 itemStatus={itemStatus().x1} />
-                <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
-              </Motion.div>
-            </Show>
-            <Show when={itemStatus().miscellaneous.title[0] == 2}>
-              <Motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: '0%' }}
-                exit={{ x: '100%' }}
-                transition={{ duration: 0.3, easing: "ease" }}
-                class="✏️MuzaiPixel"
-              >
+              </Show>
+              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 2)}>
                 <X2 itemStatus={itemStatus().x2} />
-                <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
-              </Motion.div>
-            </Show>
-            <Show when={itemStatus().miscellaneous.title[0] == 3}>
-              <Motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: '0%' }}
-                exit={{ x: '100%' }}
-                transition={{ duration: 0.3, easing: "ease" }}
-                class="✏️MuzaiPixel"
-              >
+              </Show>
+              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 3)}>
                 <X3 itemStatus={itemStatus().x3} />
+              </Show>
+              <Show when={showAllStats}>
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
-                <Show when={displayMode() == 4}><ItemIconTextLine lines={itemLogs()} /></Show>
-              </Motion.div>
-            </Show>
-          </Show>
-
-          {/* show last logs */}
-          <Show when={displayMode() == 2}>
-            <Motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: '0%' }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.3, easing: "ease" }}
-            >
-              <ItemIconTextLine lines={itemLogs()} />
+              </Show>
+              <Show when={showItemLog}>
+                <ItemIconTextLine lines={item_logs()} />
+              </Show>
             </Motion.div>
-            {/* <div>
-              <ItemIconTextLine lines={itemLogs()} />
-            </div> */}
-          </Show>
         </Presence >
       </div>
     </>

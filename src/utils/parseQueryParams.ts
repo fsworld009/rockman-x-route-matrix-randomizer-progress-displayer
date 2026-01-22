@@ -1,4 +1,19 @@
 
 const params = new URLSearchParams(window.location.search);
 
-export const defaultDisplayMode = Number(params.get('s')) || 0;
+function parseBoolean(param: string | null, defaultVar: boolean) {
+  if (!param) {
+    return defaultVar;
+  }
+  return param === 'true' || param === '1';
+}
+
+export let progressMode = params.get('progress') || '';
+if (!['current', 'off'].includes(progressMode)) {
+  progressMode = 'all';
+}
+
+export const showAllStats = parseBoolean(params.get('all_stats'), true);
+export const showItemLog = parseBoolean(params.get('item_log'), true);
+
+export const item_log_rows = Math.max(Number.parseInt(params.get('item_log_rows') || '0') || 5, 1);
