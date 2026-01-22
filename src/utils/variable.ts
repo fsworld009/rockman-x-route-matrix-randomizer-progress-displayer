@@ -671,11 +671,11 @@ export const translationMapping = {
     ],
     'zero': [
       // head
-      ['[2]傑洛腳部零件'],
-      // body
       ['[2]傑洛頭部零件'],
-      // foot
+      // body
       ['[2]傑洛身體零件'],
+      // foot
+      ['[2]傑洛腳部零件'],
     ]
   },
   'x3': {

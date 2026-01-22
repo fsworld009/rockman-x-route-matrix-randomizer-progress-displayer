@@ -84,9 +84,18 @@ function Common(props: {
         <div class="relative">
           <ItemImage source={`${imgBasePath}x.png`} />
           <For each={imgSource.armor}>{(armor, i) =>
-            // Armor value saved in index 0, chip value saved in index 3
             <Show
-              when={itemStatus().armor[i()%4][i() < 4 ? 0 : 3]}
+              // imgSource.armor[i()] 0~3 is armor image, 4~7 is chip image.
+              // itemStatus.armor is a 2d array and only has length of 4. For each
+              // inner list, armor value saved in index 0, chip value saved in index 3 for each list.
+              //
+              // Armor is activated in game when either armor or chip item is acquired.
+              // Chip is activated in game when both armor and chip item are acquired.  
+              when={
+                i() < 4 ?
+                  (itemStatus().armor[i()][0] !== itemStatus().armor[i()][3]) :
+                  (itemStatus().armor[i()%4][0] && itemStatus().armor[i()%4][3])
+              }
               fallback={<></>}
             >
               <div class="absolute left-0 top-0 size-[100%]">
