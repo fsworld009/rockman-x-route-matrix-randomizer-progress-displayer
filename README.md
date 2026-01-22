@@ -44,6 +44,8 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 
 ## 選項/options
 
+在網址末端可用`?選項1=值&選項2=值&選項3=值`的方式進行調整 例如`index.html?s=1`
+
 - `s`
 
 頁面載入時的預設顯示模式，未指定時使用模式0
@@ -64,6 +66,10 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 需要手動切換時，請對瀏覽器來源右鍵→點選「互動」→點擊視窗畫面
 如果字體的窄體顯示效果不正確時，於互動中再次點擊畫面進行切換即可
 
+## CSS
+
+如需要修改邊框樣式請在OBS修改CSS `.section-border`
+[原始碼參考](src/index.css#47)
 
 ## library
 
