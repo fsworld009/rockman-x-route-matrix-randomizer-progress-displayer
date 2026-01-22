@@ -28,8 +28,8 @@ export const imgSourceObject = {
       'x1_x_arm.png',
       'x1_x_body.png',
       'x1_x_foot.png',
-      'x1_x_hadouken.png'
     ],
+    'super': 'x1_x_hadouken.png',
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -63,8 +63,8 @@ export const imgSourceObject = {
       'x2_x_arm.png',
       'x2_x_body.png',
       'x2_x_foot.png',
-      'x2_x_shoryuken.png'
     ],
+    'super': 'x2_x_shoryuken.png',
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -103,8 +103,12 @@ export const imgSourceObject = {
       'x3_x_arm.png',
       'x3_x_body.png',
       'x3_x_foot.png',
-      'x3_x_saber.png'
+      'x3_x_head_chip.png',
+      'x3_x_arm_chip.png',
+      'x3_x_body_chip.png',
+      'x3_x_foot_chip.png',
     ],
+    'super': 'x3_x_saber.png',
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -142,7 +146,8 @@ export const initItemStatus = {
   'x1': {
     bosses: Array(8).fill(0),
     weapon: Array(8).fill(0),
-    armor: Array(5).fill(0),
+    armor: Array(4).fill(0),
+    super: Array(1).fill(0),
     sigma: Array(1).fill(0),
     hp: Array(1).fill(0),
     wp: Array(1).fill(0),
@@ -153,7 +158,8 @@ export const initItemStatus = {
   'x2': {
     bosses: Array(8).fill(0),
     weapon: Array(8).fill(0),
-    armor: Array(5).fill(0),
+    armor: Array(4).fill(0),
+    super: Array(1).fill(0),
     sigma: Array(1).fill(0),
     hp: Array(1).fill(0),
     wp: Array(1).fill(0),
@@ -165,7 +171,8 @@ export const initItemStatus = {
   'x3': {
     bosses: Array(8).fill(0),
     weapon: Array(8).fill(0),
-    armor: Array(5).fill(0),
+    armor: Array(4).fill(0),
+    super: Array(1).fill(0),
     sigma: Array(1).fill(0),
     hp: Array(1).fill(0),
     wp: Array(1).fill(0),
@@ -232,6 +239,8 @@ export const addressMapping = {
       ['1ItBodyPart', '', '', '1ItBodyChip'],
       // foot ['0x05E']
       ['1ItFootPart', '', '', '1ItFootChip'],
+    ],
+    'super': [
       // hadou ['0x050']
       ['1ItHadouken']
     ],
@@ -313,6 +322,8 @@ export const addressMapping = {
       ['2ItBodyPart', '', '', '2ItBodyChip'],
       // foot ['0x15E']
       ['2ItFootPart', '', '', '2ItFootChip'],
+    ],
+    'super': [
       // shoryu ['0x150']
       ['2ItShoryuken'],
     ],
@@ -402,6 +413,8 @@ export const addressMapping = {
       ['3ItBodyPart', '', '', '3ItBodyChip'],
       // foot ['0x25E']
       ['3ItFootPart', '', '', '3ItFootChip'],
+    ],
+    'super': [
       // saber ['0x250']
       ['3ItSaber'],
     ],

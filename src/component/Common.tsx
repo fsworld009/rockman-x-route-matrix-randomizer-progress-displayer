@@ -84,8 +84,9 @@ function Common(props: {
         <div class="relative">
           <ItemImage source={`${imgBasePath}x.png`} />
           <For each={imgSource.armor}>{(armor, i) =>
+            // Armor value saved in index 0, chip value saved in index 3
             <Show
-              when={i() < 4 && itemStatus().armor[i()][0]}
+              when={itemStatus().armor[i()%4][i() < 4 ? 0 : 3]}
               fallback={<></>}
             >
               <div class="absolute left-0 top-0 size-[100%]">
@@ -156,10 +157,10 @@ function Common(props: {
             <TextAnimated text={itemStatus().sigmaBosses[0]} />
           </div>
         </div>
-        {/* Special Armor */}
+        {/* Super Weapon */}
         <ItemImage
-          source={`${imgBasePath}${imgSource.armor[4]}`}
-          itemStatus={itemStatus().armor[4]} />
+          source={`${imgBasePath}${imgSource.super}`}
+          itemStatus={itemStatus().super[0]} />
 
         {/* Children */}
         {c()}
