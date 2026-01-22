@@ -66,7 +66,7 @@ function Common(props: {
   // console.log(itemStatus())
 
   return (
-    <>
+    <div class="section-border">
       <GridContainer cols={9}>
         <ItemImage source={`${imgBasePath}${title}`} />
 
@@ -164,7 +164,7 @@ function Common(props: {
         {/* Children */}
         {c()}
       </GridContainer>
-    </>
+    </div>
   )
 }
 

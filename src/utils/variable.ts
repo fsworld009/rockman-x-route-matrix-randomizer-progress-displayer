@@ -129,6 +129,7 @@ export const imgSourceObject = {
     'wp': 'energy.png',
     'd': 'deaths.png',
     'igf': 'igf.png',
+    'title': 'title_x123.ico',
   },
   'title': {
     'x1': 'title_x1.ico',

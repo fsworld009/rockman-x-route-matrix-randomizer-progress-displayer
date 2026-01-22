@@ -2,6 +2,8 @@
 
 ![screenshot](/screenshot.jpg)
 
+![screenshot](/screenshot_20260122.png)
+
 用於圖像化[Route MatriX Randomizer progress tracker JS](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker_js/)輸出的進度表網頁
 
 ## 事前準備/prerequisites
@@ -28,7 +30,9 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 └── index.html (從「Release」解壓縮)
 ```
 
-5. 載入boot.lua後載入RouteMatriXRandomizer_progress_displayer/progress_tracker_js/RMR_progress_tracker.lua
+5. BizHawk載入`boot.lua`
+6. BizHawk載入`progress_tracker_js/RMR_progress_tracker.lua`
+7. 遊戲進到選關畫面，如設定正確，網頁會開始顯示目前遊戲進度與新道具紀錄
 
 ## 使用方式/how to use
 
@@ -40,55 +44,26 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 
 ## 選項/options
 
-~~想啟用選項，需在複製「本機檔案」欄位上的網址後，取消勾選，將網址改為`file:///`+`複製網址`~~
+- `s`
 
-~~在網址末端可用`?選項1=值&選項2=值&選項3=值`的方式進行調整~~
-~~例如`index.html?s=1`~~
+頁面載入時的預設顯示模式，未指定時使用模式0
 
-- ~~`s`~~
-  - ~~`1`：只顯示當前遊戲~~
-  - ~~預設值：顯示所有遊戲~~
+| 模式 | 顯示內容 |
+|-----|---------|
+|  0  | 全遊戲進度 |
+|  1  | 目前遊戲進度 |
+|  2  | 新道具取得紀錄 |
+|  3  | 全遊戲進度 + 新道具取得紀錄 |
+|  4  | 目前遊戲進度 + 新道具取得紀錄 |
 
-對OBS的瀏覽器來源右鍵→點選「互動」→點擊視窗畫面，可切換`目前遊戲`/`所有遊戲`/`取得記錄`模式
+頁面開啟後，可滑鼠點擊畫面手動切換模式
 
+**註**: OBS上使用
+
+需在複製「本機檔案」欄位上的網址後，取消勾選瀏覽器來源設定裡的「本機檔案」，將網址改為`file:///`+`複製網址`
+需要手動切換時，請對瀏覽器來源右鍵→點選「互動」→點擊視窗畫面
 如果字體的窄體顯示效果不正確時，於互動中再次點擊畫面進行切換即可
 
-## 運作原理/how does it work
-
-一般情況下，由於資訊安全上的原因，網頁無法直接存取本地的檔案，參照：[Reason: CORS request not HTTP - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS/Errors/CORSRequestNotHttp)
-
-會需要修改瀏覽器本身的資訊安全設定，或是自行建立一個本地伺服器，因此本專案的頁面在瀏覽器上直接開啟時會無法使用
-
-但在OBS上的瀏覽器來源使用「本機檔案」選擇時，則不會受到此限制，故可藉此達成讀取檔案顯示進度的功能
-
-然而若是想直接使用`file:///`（例如：`file:///C:/RouteMatriXRandomizer/RouteMatriXRandomizer_progress_displayer.html`）則仍會遇到CORS錯誤，故未採取上方原定的選項設定法
-
-note：舊版的OBS在執行時加上`--allow-file-access-from-files`標籤，較新版的使用`http://absolute/`取代`file:///`（例如：`http://absolute/C:/RouteMatriXRandomizer/RouteMatriXRandomizer_progress_displayer.html`），則或許也能達成？
-
-### 如果我也想在自己玩的時候使用這類相關工具？
-
-你可以調降瀏覽器的安全設定，但鑑於日後因素並不大推薦
-
-稍微繞路一點，但調整上較簡單的方式，你可以
-
-#### 1. 架設本地伺服器
-
-1. 下載[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
-2. 安裝[Live Server - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-  a. 按下`Ctrl+Shift+P`
-  b. 移除提示命令欄內的`>`後，輸入`ext install ritwickdey.LiveServer`
-3. 按下`檔案`>`開啟資料夾`>開啟網頁所在資料夾
-4. 點選編輯器下方的「Go Live」
-
-#### 2. 安裝相關擴充功能（未檢驗）
-
-1. 下載[Polyglot-HTML-ZIP-PNG/util/web-extension at main · gildas-lormeau/Polyglot-HTML-ZIP-PNG](https://github.com/gildas-lormeau/Polyglot-HTML-ZIP-PNG/tree/main/util/web-extension)中的擴充功能並安裝
-
-### Other ref
-
-- [obs-browser/README.md at master · obsproject/obs-browser](https://github.com/obsproject/obs-browser/blob/master/README.md#js-bindings)
-- [Browser Source | OBS](https://obsproject.com/kb/browser-source)
-- [OBS Studio ブラウザソース解説 - すたいるのOBS情報メモブログ](https://style1925.hateblo.jp/entry/obs-browser#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABHTML%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E7%94%BB%E5%83%8F%E3%81%8C%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%81%E3%81%AA%E3%81%84)
 
 ## library
 
@@ -97,7 +72,6 @@ note：舊版的OBS在執行時加上`--allow-file-access-from-files`標籤，�
 - [vite-plugin-singlefile - npm](https://www.npmjs.com/package/vite-plugin-singlefile)
 - solid-motionone
 - solid-transition-group
-- js-crc
 - emfont
 - MuzaiPixel
 - FusionPixelFont12pxMono
@@ -106,7 +80,7 @@ note：舊版的OBS在執行時加上`--allow-file-access-from-files`標籤，�
 ## TODO
 
 - [x] 切換設定
-  - [ ] ~~從網址params取得~~
+  - [x] 從網址params取得
   - [x] 全畫面點擊
 - [ ] 設定
   - [x] 顯示所有遊戲內容
@@ -119,7 +93,7 @@ note：舊版的OBS在執行時加上`--allow-file-access-from-files`標籤，�
 - [ ] ~~recalculate aspect ratio~~
 - [ ] long click>slide to switch?
 - [ ] wheel to add/reduce display text line
-- [x] check source by crc to avoid redundant parse
+- ~~[ ] check source by crc to avoid redundant parse~~
 
 ## note
 

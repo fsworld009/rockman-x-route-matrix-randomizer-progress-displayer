@@ -174,8 +174,6 @@ export function getNewItemLogs(newItems: RMRPTJS.AcquiredItems) {
   // const result: string[] = populateItemLogs(lines, addressMapping, translationMapping)
   // console.log(result)
   // const result: string[] = []
-
-  // const keyLines = text.trim().split(/\s+/);
   const flatMap = buildTranslationMap(addressMapping, translationMapping);
 
   const imgMap = buildImageMap(addressMapping, imgSourceObject)

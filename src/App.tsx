@@ -43,8 +43,7 @@ function App() {
       {/* <div class="grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-[repeat(9,min(10vw,8vh))] tracking-wider">
         {itemStatus().x1.e[0]}
         </div> */}
-      <div
-        style="height:100vh" onClick={() => setDisplayMode((displayMode() + 1) % 5)}
+      <div onClick={() => setDisplayMode((displayMode() + 1) % 5)}
       >
         <Presence exitBeforeEnter>
           {/* show all games and last 5 got items */}

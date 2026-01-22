@@ -13,9 +13,10 @@ function Miscellaneous(props: { itemStatus: MiscellaneousItemStatus, }) {
   const itemStatus = () => props.itemStatus
 
   return (
-    <>
+    <div class="section-border">
       <GridContainer cols={'9'}>
         {/* <For each={['sigma', 'hp', 'wp', 'd', 'igf'] as const}>{(miscItem) => */}
+        <ItemImage source={`${imgBasePath}${imgSource['title']}`} />
         <For each={['sigma', 'hp', 'wp', 'igf'] as const}>{(miscItem) =>
           <div class="relative">
             <ItemImage source={`${imgBasePath}${imgSource[miscItem]}`} />
@@ -27,7 +28,7 @@ function Miscellaneous(props: { itemStatus: MiscellaneousItemStatus, }) {
 
         {/* Game Time */}
       </GridContainer>
-    </>
+    </div>
   )
 }
 

@@ -42,3 +42,11 @@
 .s-move {
   /* transition: transform 0.4s ease; */
 }
+
+/* Don't use Tailwind CSS so it's easier to override in OBS */
+.section-border {
+  border-radius: 5px;
+  border: 2px solid white ;
+  margin-bottom: 5px;
+  padding: 2px;
+}
