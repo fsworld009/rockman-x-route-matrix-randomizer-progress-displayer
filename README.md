@@ -64,7 +64,7 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 
 - `item_log`
 
-是否顯示道具取得紀錄  可為`true`(顯示)或`false`(不顯示) 預設值：`true` 預設值：`true`
+是否顯示道具取得紀錄  可為`true`(顯示)或`false`(不顯示) 預設值：`true`
 
 - `item_log_rows`
 
@@ -107,9 +107,10 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
   - [x] Motion
   - [ ] 微調
 - [ ] ~~recalculate aspect ratio~~
-- [ ] long click>slide to switch?
-- [ ] wheel to add/reduce display text line
-- ~~[ ] check source by crc to avoid redundant parse~~
+- [ ] ~~long click>slide to switch?~~
+- [x] wheel to add/reduce display text line
+- [ ] ~~check source by crc to avoid redundant parse~~
+- [ ] progress=all 只顯示有加入亂數的遊戲
 
 ## note
 
