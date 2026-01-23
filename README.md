@@ -2,7 +2,7 @@
 
 ![screenshot](/screenshot.jpg)
 
-![screenshot](/screenshot_20260122.png)
+![screenshot](/screenshot_20260123.png)
 
 用於圖像化[Route MatriX Randomizer progress tracker JS](https://github.com/fsworld009/Route-MatriX-Randomizer_progress_tracker_js/)輸出的進度表網頁
 
