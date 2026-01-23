@@ -131,7 +131,7 @@ function buildImageMap(addressMapping: { [key: string]: any }, imgSourceObject: 
 
     for (const category in categories) {
       const items = categories[category];
-      const imgItems = imgCats[category] ?? [];
+      const imgItems = imgCats[category === 'armor' ? 'armor_log' : category] ?? [];
 
       items.forEach((entry: string | string[], i: number) => {
         if (Array.isArray(entry)) {
