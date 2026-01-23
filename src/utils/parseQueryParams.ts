@@ -13,7 +13,7 @@ if (!['current', 'off'].includes(progressMode)) {
   progressMode = 'all';
 }
 
-export let disableTitles = params.get('disabled_title') || '';
+export let disableTitles = params.get('disabled_titles') || '';
 if (!['invisible', 'grayout', 'hidden'].includes(disableTitles)) {
   disableTitles = 'grayout';
 }

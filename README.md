@@ -58,7 +58,7 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 
 頁面開啟後，可滑鼠點擊畫面手動切換模式
 
-- `disabled_games`
+- `disabled_titles`
 
 未加入亂數的遊戲進度表顯示方式 預設值: `grayout`
 
