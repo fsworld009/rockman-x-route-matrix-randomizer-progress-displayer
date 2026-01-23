@@ -58,6 +58,16 @@ RouteMatriXRandomizer_progress_displayer (從「Release」解壓縮)
 
 頁面開啟後，可滑鼠點擊畫面手動切換模式
 
+- `disabled_games`
+
+未加入亂數的遊戲進度表顯示方式 預設值: `grayout`
+
+| 值 | 顯示方式 |
+|-----|---------|
+|  grayout  | 以黑白顯示 |
+|  invisible  | 不顯示, 但不把其它遊戲往上移 |
+|  hidden  | 不顯示, 把其它遊戲往上移 |
+
 - `all_stats`
 
 是否顯示全遊戲共同數據（死亡數，總愛心，總西格瑪鑰匙數等） 可為`true`(顯示)或`false`(不顯示) 預設值：`true`
