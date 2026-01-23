@@ -13,9 +13,9 @@ if (!['current', 'off'].includes(progressMode)) {
   progressMode = 'all';
 }
 
-export let disabledGames = params.get('disabled_games') || '';
-if (!['invisible', 'grayout', 'hidden'].includes(disabledGames)) {
-  disabledGames = 'grayout';
+export let disableTitles = params.get('disabled_title') || '';
+if (!['invisible', 'grayout', 'hidden'].includes(disableTitles)) {
+  disableTitles = 'grayout';
 }
 
 

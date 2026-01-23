@@ -1,37 +1,38 @@
-import { disabledGames, progressMode } from '../utils/parseQueryParams';
-import { children, createMemo, type JSX } from 'solid-js';
+import { Motion, Presence } from 'solid-motionone';
+import { disableTitles, progressMode } from '../utils/parseQueryParams';
+import { children, Show, type JSX } from 'solid-js';
 
 function ProgressFilter(props: {
   children: number | boolean | Node | JSX.ArrayElement | (string & {}) | null | undefined,
   game: number,
   itemStatus: any,
 }) {
-  const disabledCsMap = {
+  const disabledCssMap = {
     invisible: 'invisible',
     hidden: 'hidden',
     grayout: 'grayscale opacity-50'
   };
 
-  const {game} = props;
   const itemStatus = () => props.itemStatus
-  const cssStyle = createMemo(() => {
-    let cssStyle;
-    // If the game is enabled
-    if (itemStatus()[`${game}enabled` as '1enabled'][0][0]) {
-      // Hide if progress mode is 'current' and is not the current game.
-      cssStyle = progressMode === 'all' || (progressMode === 'current' && itemStatus().title[0][0] === game)
-        ? '' : 'hidden';
-    } else {
-      cssStyle = disabledCsMap[disabledGames as keyof typeof disabledCsMap];
-    }
-    return cssStyle
-  });
   const c = children(() => props.children)
 
   return (
-    <div class={cssStyle()}>
-      {c()}
-    </div>
+
+    <div>
+      <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().title[0][0] === props.game)}>
+        <Motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: '0%' }}
+          exit={{ x: '100%' }}
+          transition={{ duration: 0.3, easing: "ease" }}
+          class="✏️MuzaiPixel"
+        >
+          <div class={itemStatus()[`x${props.game}Enabled` as 'x1Enabled'][0][0] ? "" : disabledCssMap[disableTitles as 'hidden']}>
+            {c()}
+          </div>
+        </Motion.div>
+      </Show>
+      </div>
   )
 }
 

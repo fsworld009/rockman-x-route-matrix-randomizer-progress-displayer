@@ -29,7 +29,7 @@ export const imgSourceObject = {
       'x1_x_body.png',
       'x1_x_foot.png',
     ],
-    'super': 'x1_x_hadouken.png',
+    'super': ['x1_x_hadouken.png'],
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -64,7 +64,7 @@ export const imgSourceObject = {
       'x2_x_body.png',
       'x2_x_foot.png',
     ],
-    'super': 'x2_x_shoryuken.png',
+    'super': ['x2_x_shoryuken.png'],
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -108,7 +108,7 @@ export const imgSourceObject = {
       'x3_x_body_chip.png',
       'x3_x_foot_chip.png',
     ],
-    'super': 'x3_x_saber.png',
+    'super': ['x3_x_saber.png'],
     'sigma': 'sigma.png',
     'hp': 'heart.png',
     'wp': 'energy.png',
@@ -192,9 +192,9 @@ export const initItemStatus = {
     d: Array(1).fill(0),
     igf: Array(1).fill(0),
     title: Array(1).fill(0),
-    '1enabled': Array(1).fill(0),
-    '2enabled': Array(1).fill(0),
-    '3enabled': Array(1).fill(0),
+    x1Enabled: Array(1).fill(0),
+    x2Enabled: Array(1).fill(0),
+    x3Enabled: Array(1).fill(0),
   },
 }
 export const addressMapping = {
@@ -282,7 +282,7 @@ export const addressMapping = {
       ]]
     ],
     'allClear': [
-      ['', '1AllClear', '', '1AllClear']
+      ['', '1SFinalClear', '', '1SFinalClear']
     ]
   },
   'x2': {
@@ -376,7 +376,7 @@ export const addressMapping = {
       ]]
     ],
     'allClear': [
-      ['', '2AllClear', '', '2AllClear']
+      ['', '2SFinalClear', '', '2SFinalClear']
     ]
   },
   'x3': {
@@ -480,7 +480,7 @@ export const addressMapping = {
       ]]
     ],
     'allClear': [
-      ['', '3AllClear', '', '3AllClear']
+      ['', '3SFinalClear', '', '3SFinalClear']
     ]
   },
   'miscellaneous': {
@@ -528,10 +528,10 @@ export const addressMapping = {
     ],
     'd': [['SDeathCount']],
     'igf': [['SIfg']],
-    'title': [['SCurrentGame']],
-    '1enabled': [['1Enabled']],
-    '2enabled': [['2Enabled']],
-    '3enabled': [['3Enabled']],
+    'title': [['SCurrentTitle']],
+    'x1Enabled': [['1Enabled']],
+    'x2Enabled': [['2Enabled']],
+    'x3Enabled': [['3Enabled']],
   },
 }
 export const translationMapping = {
@@ -582,6 +582,8 @@ export const translationMapping = {
       ['[1]身體裝備', '', '', ''],
       // foot
       ['[1]腳部裝備', '', '', ''],
+    ],
+    'super': [
       // hadou
       ['[1]波動拳']
     ],

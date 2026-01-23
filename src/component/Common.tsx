@@ -168,7 +168,7 @@ function Common(props: {
         </div>
         {/* Super Weapon */}
         <ItemImage
-          source={`${imgBasePath}${imgSource.super}`}
+          source={`${imgBasePath}${imgSource.super[0]}`}
           itemStatus={itemStatus().super[0]} />
 
         {/* Children */}
