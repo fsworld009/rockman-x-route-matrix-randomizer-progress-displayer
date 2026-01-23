@@ -13,6 +13,12 @@ if (!['current', 'off'].includes(progressMode)) {
   progressMode = 'all';
 }
 
+export let disabledGames = params.get('disabled_games') || '';
+if (!['invisible', 'grayout', 'hidden'].includes(disabledGames)) {
+  disabledGames = 'grayout';
+}
+
+
 export const showAllStats = parseBoolean(params.get('all_stats'), true);
 export const showItemLog = parseBoolean(params.get('item_log'), true);
 

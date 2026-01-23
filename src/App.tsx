@@ -1,4 +1,4 @@
-import { createSignal, Show, onMount } from 'solid-js'
+import { createSignal, Show, onMount, createMemo, createEffect } from 'solid-js'
 import { Motion, Presence } from "solid-motionone"
 
 import { initItemStatus } from './utils/variable'
@@ -11,12 +11,13 @@ import X3 from "./component/X3"
 import Miscellaneous from "./component/Miscellaneous"
 
 import ItemIconTextLine from './component/ItemIconTextLine'
+import ProgressFilter from './component/ProgressFilter';
 
 function App() {
   const [itemStatus, setItemStatus] = createSignal(initItemStatus)
   const [item_logs, setItemLogs] = createSignal<string[][]>([])
 
-  async function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
+  function onProgressUpdate(progress: RMRPTJS.Progress, acquiredItems: RMRPTJS.AcquiredItems, newAcquiredItems: RMRPTJS.AcquiredItems) {
     setItemStatus({ ...getNewItemStatus(initItemStatus, progress) })
     setItemLogs([...getNewItemLogs(acquiredItems.concat(newAcquiredItems))])
     return;
@@ -43,15 +44,15 @@ function App() {
               transition={{ duration: 0.3, easing: "ease" }}
               class="✏️MuzaiPixel"
             >
-              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 1)}>
-                <X1 itemStatus={itemStatus().x1} />
-              </Show>
-              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 2)}>
+              <ProgressFilter itemStatus={itemStatus().miscellaneous} game={1}>
+                <X1 itemStatus={itemStatus().x1}/>
+              </ProgressFilter>
+              <ProgressFilter itemStatus={itemStatus().miscellaneous} game={2}>
                 <X2 itemStatus={itemStatus().x2} />
-              </Show>
-              <Show when={progressMode === 'all' || (progressMode === 'current' && itemStatus().miscellaneous.title[0] == 3)}>
+              </ProgressFilter>
+              <ProgressFilter itemStatus={itemStatus().miscellaneous} game={3}>
                 <X3 itemStatus={itemStatus().x3} />
-              </Show>
+              </ProgressFilter>
               <Show when={showAllStats}>
                 <Miscellaneous itemStatus={itemStatus().miscellaneous} />
               </Show>

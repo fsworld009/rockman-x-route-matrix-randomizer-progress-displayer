@@ -1,5 +1,6 @@
 import { Show } from 'solid-js'
 import { Motion, Presence } from "solid-motionone"
+import { imgBasePath } from '../utils/variable';
 
 function ItemImage(props: {
   source: string,
@@ -137,6 +138,29 @@ function ItemImage(props: {
           </svg>
         </Show> */}
       </div>
+      
+      {/* KO image */}
+      <Show
+        when={itemStatus() ? itemStatus()[3] : false}
+        fallback={<></>}
+      >
+        <div class="absolute top-0 left-0 w-[100%] h-[100%]">
+          <Motion
+            animate={{ opacity: [0, 1], rotate: [180, 0], scale: [10, 1] }}
+            exit={{ opacity: [1, 0], rotate: [0, 180], scale: [1, 10] }}
+            transition={{
+              duration: 0.6,
+              easing: "ease-in-out"
+            }}
+            class="size-[100%]"
+          >
+            <div class="flex  items-end justify-center h-[100%]">
+                <img src={`${imgBasePath}beaten.png`} class="size-[65%]"></img>
+            </div>
+          </Motion>
+        </div>
+      </Show>
+
     </div >
   )
 }

@@ -161,9 +161,9 @@ function Common(props: {
       <GridContainer cols={9}>
         {/* Sigma Boss */}
         <div class="relative">
-          <ItemImage source={`${imgBasePath}${imgSource['sigmaBosses']}`} />
+          <ItemImage source={`${imgBasePath}${imgSource['sigmaBosses']}`} itemStatus={itemStatus().allClear[0]}/>
           <div class="absolute size-[100%] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center">
-            <TextAnimated text={itemStatus().sigmaBosses[0]} />
+            <Show when={!itemStatus().allClear[0][3]}> <TextAnimated text={itemStatus().sigmaBosses[0]} /></Show>
           </div>
         </div>
         {/* Super Weapon */}

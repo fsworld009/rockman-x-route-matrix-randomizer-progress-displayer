@@ -133,7 +133,7 @@ export const imgSourceObject = {
     'wp': 'energy.png',
     'd': 'deaths.png',
     'igf': 'igf.png',
-    'title': 'title_x123.ico',
+    'title': 'title_xRMR.ico',
   },
   'title': {
     'x1': 'title_x1.ico',
@@ -153,7 +153,8 @@ export const initItemStatus = {
     wp: Array(1).fill(0),
     e: Array(1).fill(0),
     b: Array(5).fill(0),
-    sigmaBosses: Array(5).fill(0),
+    sigmaBosses: Array(4).fill(0),
+    allClear: Array(1).fill(0),
   },
   'x2': {
     bosses: Array(8).fill(0),
@@ -166,7 +167,8 @@ export const initItemStatus = {
     e: Array(1).fill(0),
     b: Array(5).fill(0),
     zero: Array(3).fill(0),
-    sigmaBosses: Array(6).fill(0),
+    sigmaBosses: Array(5).fill(0),
+    allClear: Array(1).fill(0),
   },
   'x3': {
     bosses: Array(8).fill(0),
@@ -180,7 +182,8 @@ export const initItemStatus = {
     b: Array(5).fill(0),
     subbosses: Array(3).fill(0),
     ridearmor: Array(4).fill(0),
-    sigmaBosses: Array(7).fill(0),
+    sigmaBosses: Array(6).fill(0),
+    allClear: Array(1).fill(0),
   },
   'miscellaneous': {
     sigma: Array(1).fill(0),
@@ -189,6 +192,9 @@ export const initItemStatus = {
     d: Array(1).fill(0),
     igf: Array(1).fill(0),
     title: Array(1).fill(0),
+    '1enabled': Array(1).fill(0),
+    '2enabled': Array(1).fill(0),
+    '3enabled': Array(1).fill(0),
   },
 }
 export const addressMapping = {
@@ -272,8 +278,11 @@ export const addressMapping = {
     ],
     'sigmaBosses': [
       [[
-        '1ChOPClear', '1ChS1Clear', '1ChS2Clear', '1ChS3Clear', '1AllClear'
+        '1ChOPClear', '1ChS1Clear', '1ChS2Clear', '1ChS3Clear',
       ]]
+    ],
+    'allClear': [
+      ['', '1AllClear', '', '1AllClear']
     ]
   },
   'x2': {
@@ -363,8 +372,11 @@ export const addressMapping = {
     ],
     'sigmaBosses': [
       [[
-        '2ChOPClear', '2ChS1Clear', '2ChS2Clear', '2ChS3Clear', '2ChS4Clear', '2AllClear'
+        '2ChOPClear', '2ChS1Clear', '2ChS2Clear', '2ChS3Clear', '2ChS4Clear',
       ]]
+    ],
+    'allClear': [
+      ['', '2AllClear', '', '2AllClear']
     ]
   },
   'x3': {
@@ -464,8 +476,11 @@ export const addressMapping = {
     ],
     'sigmaBosses': [
       [[
-        '3ChOPClear', '3ChS1Clear1', '3ChS1Clear2', '3ChS2Clear1', '3ChS2Clear2', '3ChS3Clear', '3AllClear'
+        '3ChOPClear', '3ChS1Clear1', '3ChS1Clear2', '3ChS2Clear1', '3ChS2Clear2', '3ChS3Clear',
       ]]
+    ],
+    'allClear': [
+      ['', '3AllClear', '', '3AllClear']
     ]
   },
   'miscellaneous': {
@@ -514,6 +529,9 @@ export const addressMapping = {
     'd': [['SDeathCount']],
     'igf': [['SIfg']],
     'title': [['SCurrentGame']],
+    '1enabled': [['1Enabled']],
+    '2enabled': [['2Enabled']],
+    '3enabled': [['3Enabled']],
   },
 }
 export const translationMapping = {
@@ -807,6 +825,7 @@ export interface X1ImgSource {
   bosses: string[]
   weapon: string[]
   armor: string[]
+  super: string
   sigmaBosses: string
 }
 export interface X1ItemStatus {
@@ -816,12 +835,14 @@ export interface X1ItemStatus {
   e: number[]
   b: number[]
   sigmaBosses: number[]
+  allClear: number[]
 }
 
 export interface X2ImgSource {
   bosses: string[]
   weapon: string[]
   armor: string[]
+  super: string
   zero: string[]
   sigmaBosses: string
 }
@@ -833,12 +854,14 @@ export interface X2ItemStatus {
   b: number[]
   zero: boolean[]
   sigmaBosses: number[]
+  allClear: number[]
 }
 
 export interface X3ImgSource {
   bosses: string[]
   weapon: string[]
   armor: string[]
+  super: string
   subbosses: string[]
   ridearmor: string[]
   sigmaBosses: string
@@ -852,6 +875,7 @@ export interface X3ItemStatus {
   subbosses: boolean[]
   ridearmor: boolean[]
   sigmaBosses: number[]
+  allClear: number[]
 }
 
 export interface MiscellaneousImgSource {
