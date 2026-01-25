@@ -28,6 +28,16 @@ export const imgSourceObject = {
       'x1_x_arm.png',
       'x1_x_body.png',
       'x1_x_foot.png',
+      null,
+      null,
+      null,
+      /**
+       * In X1 we can collect "spare foot part"
+       * which maps to 1ItFootChip. Need to add image here
+       * to display foot armor when both 1ItFootPart and 1ItFootChip
+       * is acquired
+       */
+      'x1_x_foot.png',
     ],
     'armor_log': [
       'x1_x_head_log.png',
@@ -256,7 +266,7 @@ export const addressMapping = {
     ],
     'armor': [
       // head ['0x058']
-      ['1ItHeadPart', '', '', '1ItHeadChip'],
+['1ItHeadPart', '', '', '1ItHeadChip'],
       // arm ['0x05A']
       ['1ItArmPart', '', '', '1ItArmChip'],
       // body ['0x05C']
@@ -598,8 +608,8 @@ export const translationMapping = {
       ['[1]手部裝備', '', '', ''],
       // body
       ['[1]身體裝備', '', '', ''],
-      // foot
-      ['[1]腳部裝備', '', '', ''],
+      // foot and spare foot part
+      ['[1]腳部裝備', '', '', '[1]腳部裝備'],
     ],
     'super': [
       // hadou
@@ -678,6 +688,8 @@ export const translationMapping = {
       ['[2]身體裝備', '', '', ''],
       // foot
       ['[2]腳部裝備', '', '', ''],
+    ],
+    'super': [
       // shoryu
       ['[2]昇龍拳'],
     ],

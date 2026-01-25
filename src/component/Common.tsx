@@ -92,7 +92,7 @@ function Common(props: {
               // Armor is activated in game when either armor or chip item is acquired.
               // Chip is activated in game when both armor and chip item are acquired.  
               when={
-                i() < 4 ?
+                armor && i() < 4 ?
                   (itemStatus().armor[i()][0] !== itemStatus().armor[i()][3]) :
                   (itemStatus().armor[i()%4][0] && itemStatus().armor[i()%4][3])
               }
