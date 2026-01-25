@@ -28,9 +28,11 @@ export const imgSourceObject = {
       'x1_x_arm.png',
       'x1_x_body.png',
       'x1_x_foot.png',
-      null,
-      null,
-      null,
+      // NOt sure if these are required, but I have generated with
+      // Arm pre-equipped in the past.
+      'x1_x_head.png',
+      'x1_x_arm.png',
+      'x1_x_body.png',
       /**
        * In X1 we can collect "spare foot part"
        * which maps to 1ItFootChip. Need to add image here
@@ -75,6 +77,11 @@ export const imgSourceObject = {
       'x2_weapon_wg.png',
     ],
     'armor': [
+      'x2_x_head.png',
+      'x2_x_arm.png',
+      'x2_x_body.png',
+      'x2_x_foot.png',
+      // Repeat for chips, in case they are acquired in game
       'x2_x_head.png',
       'x2_x_arm.png',
       'x2_x_body.png',
@@ -603,11 +610,11 @@ export const translationMapping = {
     ],
     'armor': [
       // head
-      ['[1]頭部裝備', '', '', ''],
+      ['[1]頭部裝備', '', '', '[1]頭部裝備'],
       // arm
-      ['[1]手部裝備', '', '', ''],
+      ['[1]手部裝備', '', '', '[1]手部裝備'],
       // body
-      ['[1]身體裝備', '', '', ''],
+      ['[1]身體裝備', '', '', '[1]身體裝備'],
       // foot and spare foot part
       ['[1]腳部裝備', '', '', '[1]腳部裝備'],
     ],
@@ -681,13 +688,13 @@ export const translationMapping = {
     ],
     'armor': [
       // head
-      ['[2]頭部裝備', '', '', ''],
+      ['[2]頭部裝備', '', '', '[2]頭部裝備'],
       // arm
-      ['[2]手部裝備', '', '', ''],
+      ['[2]手部裝備', '', '', '[2]手部裝備'],
       // body
-      ['[2]身體裝備', '', '', ''],
+      ['[2]身體裝備', '', '', '[2]身體裝備'],
       // foot
-      ['[2]腳部裝備', '', '', ''],
+      ['[2]腳部裝備', '', '', '[2]腳部裝備'],
     ],
     'super': [
       // shoryu
